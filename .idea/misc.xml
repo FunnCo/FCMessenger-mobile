@@ -19,6 +19,7 @@
         <entry key="..\:/AndroidProjs2/FCMessenger/app/src/main/res/layout/item_chat.xml" value="0.371875" />
         <entry key="..\:/AndroidProjs2/FCMessenger/app/src/main/res/layout/item_message_my.xml" value="0.278125" />
         <entry key="..\:/AndroidProjs2/FCMessenger/app/src/main/res/layout/item_message_other.xml" value="0.37083333333333335" />
+        <entry key="..\:/AndroidProjs2/FCMessenger/app/src/main/res/layout/item_new_chat_member.xml" value="0.37083333333333335" />
         <entry key="..\:/AndroidProjs2/FCMessenger/app/src/main/res/menu/bottom_nav_menu.xml" value="0.371875" />
       </map>
     </option>
