@@ -3,7 +3,6 @@ package com.funnco.fcmessenger.activity.splash
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import com.funnco.fcmessenger.activity.login.LoginActivity
 import com.funnco.fcmessenger.activity.main.MainActivity
@@ -33,11 +32,13 @@ class SplashActivity : AppCompatActivity() {
             startLoginActivity()
         }
         else {
-            RetrofitObject.userAuthAPI.loginViaToken(token).enqueue(object : Callback<Void> {
+            RetrofitObject.authAPI.loginViaToken(token).enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if(response.isSuccessful && response.code() == 200){
                         Log.d(this.javaClass.name, "Successful token authorization")
                         startMainActivity()
+                    } else {
+                        startLoginActivity()
                     }
                 }
 

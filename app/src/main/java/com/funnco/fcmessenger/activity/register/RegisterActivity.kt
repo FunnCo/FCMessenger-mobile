@@ -1,14 +1,12 @@
 package com.funnco.fcmessenger.activity.register
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
-import com.funnco.fcmessenger.activity.login.LoginActivity
 import com.funnco.fcmessenger.activity.main.MainActivity
-import com.funnco.fcmessenger.common.model.RegisterBody
+import com.funnco.fcmessenger.common.model.UserModel
 import com.funnco.fcmessenger.common.model.TokenHolder
 import com.funnco.fcmessenger.common.retrofit.RetrofitObject
 import com.funnco.fcmessenger.databinding.ActivityRegisterBinding
@@ -30,21 +28,21 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.registerBtnRegister.setOnClickListener {
 
-            val registerBody = RegisterBody()
-            registerBody.email = binding.registerEtxtEmail.text.toString()
-            registerBody.phone = binding.registerEtxtPhone.text.toString()
-            registerBody.firstname = binding.registerEtxtFirstname.text.toString()
-            registerBody.lastname = binding.registerEtxtLastname.text.toString()
-            registerBody.patronymic = binding.registerEtxtPatronymic.text.toString()
-            registerBody.password = binding.registerEtxtPassword.text.toString()
+            val newUser = UserModel()
+            newUser.email = binding.registerEtxtEmail.text.toString()
+            newUser.phone = binding.registerEtxtPhone.text.toString()
+            newUser.firstname = binding.registerEtxtFirstname.text.toString()
+            newUser.lastname = binding.registerEtxtLastname.text.toString()
+            newUser.patronymic = binding.registerEtxtPatronymic.text.toString()
+            newUser.password = binding.registerEtxtPassword.text.toString()
             val repeatedPassword = binding.registerEtxtRepeatPassword.text.toString()
 
             // Проверка что все поля заполнены
-            if (registerBody.email.isNullOrBlank() ||
-                registerBody.phone.isNullOrBlank() ||
-                registerBody.firstname.isNullOrBlank() ||
-                registerBody.lastname.isNullOrBlank() ||
-                registerBody.password.isNullOrBlank() ||
+            if (newUser.email.isNullOrBlank() ||
+                newUser.phone.isNullOrBlank() ||
+                newUser.firstname.isNullOrBlank() ||
+                newUser.lastname.isNullOrBlank() ||
+                newUser.password.isNullOrBlank() ||
                 repeatedPassword.isBlank()
             ) {
                 showAlert("Пожалуйста, заполните все поля (отчество указывать не обязательно).")
@@ -52,13 +50,13 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             // Проверка на соотвествие почты и телефона паттерну
-            val isPhoneCorrect = registerBody.phone!!.matches("^\\+7\\d{10}$".toRegex())
+            val isPhoneCorrect = newUser.phone!!.matches("^\\+7\\d{10}$".toRegex())
             if(!isPhoneCorrect){
                 showAlert("Пожалуйста, введите корректный номер телефона в следующем формате: +71234567890")
                 return@setOnClickListener
             }
 
-            val isEmailCorrect = registerBody.email!!.matches(
+            val isEmailCorrect = newUser.email!!.matches(
                 "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$".toRegex()
             )
             if(!isEmailCorrect){
@@ -67,16 +65,16 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             // Проверка на совпадение паролей
-            if(repeatedPassword != registerBody.password){
+            if(repeatedPassword != newUser.password){
                 showAlert("Введенные пароли не совпадают")
                 return@setOnClickListener
             }
 
             // Отправка запроса на регистрацию на сервер
-            RetrofitObject.userAuthAPI.register(registerBody).enqueue(object: Callback<Void>{
+            RetrofitObject.authAPI.register(newUser).enqueue(object: Callback<Void>{
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     Log.d(this.javaClass.name, "Successful registration")
-                    getTokenFromServer(registerBody.email!!, registerBody.password!!)
+                    getTokenFromServer(newUser.email!!, newUser.password!!)
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
@@ -89,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun getTokenFromServer(email: String, password: String){
-        RetrofitObject.userAuthAPI.loginByPassword(email, password).enqueue(object : Callback<TokenHolder>{
+        RetrofitObject.authAPI.loginByPassword(email, password).enqueue(object : Callback<TokenHolder>{
             override fun onResponse(call: Call<TokenHolder>, response: Response<TokenHolder>) {
                 if(response.isSuccessful && response.code() == 200){
                     Log.d(this.javaClass.name, "Successful authorization via password")

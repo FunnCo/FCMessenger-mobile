@@ -9,10 +9,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatlist_recycler"
         android:layout_width="match_parent"
+        tools:listitem="@layout/item_chat"
         android:layout_height="match_parent"
+        tools:itemCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="8dp"
+        android:layout_marginHorizontal="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

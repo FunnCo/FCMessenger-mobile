@@ -38,12 +38,16 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            RetrofitObject.userAuthAPI.loginByPassword(email, password).enqueue(object : Callback<TokenHolder>{
+            RetrofitObject.authAPI.loginByPassword(email, password).enqueue(object : Callback<TokenHolder>{
                 override fun onResponse(call: Call<TokenHolder>, response: Response<TokenHolder>) {
                     if(response.isSuccessful && response.code() == 200){
                         Log.d(this.javaClass.name, "Successful authorization via password")
                         getSharedPreferences("settings", MODE_PRIVATE).edit().putString("token", response.body()!!.token!!).apply()
                         startMainActivity()
+                    }
+                    if(response.code() == 404){
+                        Log.d(this.javaClass.name, "User not found")
+                        showAlert("Введена не верная почта или пароль. Пожалуйста, проверьте данные, и введите их снова")
                     }
                 }
 

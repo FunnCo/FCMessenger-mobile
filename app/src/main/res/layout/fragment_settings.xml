@@ -11,21 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
+        android:background="@color/mainLight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
+        android:id="@+id/settings_btn_change_cancel"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:id="@+id/settings_btn_change_info"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:padding="10dp"
+        android:text="Назад"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_btn_change_save"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:paddingVertical="10dp"
         android:text="Сохранить"
         android:textAllCaps="false"
-        android:layout_marginBottom="8dp"
-        android:layout_marginHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,16 +53,144 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_img_avatar" />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/settings_btn_change_save"
+        app:layout_constraintTop_toBottomOf="@+id/settings_img_avatar"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ваши данные:"
-        android:textSize="9pt"
-        android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_img_avatar" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Ваши данные:"
+                android:textSize="8pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/settings_etxt_firstname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Имя"
+                android:textColor="@color/lightText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
+            <EditText
+                android:id="@+id/settings_etxt_lastname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Фамилия"
+                android:textColor="@color/lightText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_etxt_firstname" />
+
+            <EditText
+                android:id="@+id/settings_etxt_patronymic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Отчество (необязательно)"
+                android:textColor="@color/lightText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_etxt_lastname" />
+
+            <EditText
+                android:id="@+id/settings_etxt_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="E-Mail"
+                android:textColor="@color/lightText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_etxt_patronymic" />
+
+            <EditText
+                android:id="@+id/settings_etxt_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Телефон"
+                android:textColor="@color/lightText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_etxt_email" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Изменение пароля:"
+                android:textSize="8pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_etxt_phone" />
+
+            <EditText
+                android:id="@+id/settings_etxt_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Новый пароль"
+                android:inputType="textPassword"
+                android:textColor="@color/lightText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView6" />
+
+            <EditText
+                android:id="@+id/settings_etxt_repeat_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Повторите пароль"
+                android:inputType="textPassword"
+                android:textColor="@color/lightText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_etxt_password" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/settings_btn_leave_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#FF5252"
+                android:paddingVertical="10dp"
+                android:text="Выйти"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/settings_etxt_repeat_password" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

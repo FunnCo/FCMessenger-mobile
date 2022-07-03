@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="4dp"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="120dp"
+        android:layout_marginStart="8dp"
+        app:cardBackgroundColor="#E1F5FE"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/materialCardView4"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:padding="4dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/item_message_other_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="Фамилия Имя"
+                android:textColor="@color/black"
+                android:textSize="8pt"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_message_other_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:maxWidth="250dp"
+                android:minWidth="50dp"
+                android:text="my super messege"
+                android:textSize="10pt"
+                app:layout_constraintStart_toStartOf="@+id/item_message_other_author"
+                app:layout_constraintTop_toBottomOf="@+id/item_message_other_author" />
+
+            <TextView
+                android:id="@+id/item_message_other_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="10:00"
+                android:textSize="8pt"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_message_other_content" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView4"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="4dp"
+        app:cardBackgroundColor="@color/mainLight"
+        app:cardCornerRadius="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/item_message_other_img_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

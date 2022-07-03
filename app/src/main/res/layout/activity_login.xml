@@ -67,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
+                android:inputType="textPassword"
                 android:textColor="@color/lightText"
                 android:hint="Пароль"
                 app:layout_constraintEnd_toEndOf="parent"
