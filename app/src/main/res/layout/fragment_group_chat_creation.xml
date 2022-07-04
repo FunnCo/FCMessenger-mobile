@@ -51,15 +51,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group_creation_etxt_chat_name" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_margin="4dp"
+    <EditText
+        android:id="@+id/group_creation_etxt_message"
         android:layout_width="0dp"
-        tools:listitem="@layout/item_new_chat_member"
-        tools:itemCount="4"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="Ваше первое сообщение"
         app:layout_constraintBottom_toTopOf="@+id/group_creation_btn_start"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/group_creation_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/group_creation_etxt_message"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_new_chat_member" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -165,8 +165,8 @@ class PersonalChatCreationFragment : Fragment() {
                 if (response.isSuccessful){
                     when(response.code()){
                         200 -> {
-                            MainScope().launch(Dispatchers.IO) {
-                                delay(250)
+                            MainScope().launch(Dispatchers.Main) {
+                                delay(500)
                                 activity!!.onBackPressed()
                             }
                         }

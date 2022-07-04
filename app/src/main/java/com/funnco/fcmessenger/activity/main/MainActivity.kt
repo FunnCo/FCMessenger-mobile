@@ -8,7 +8,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.funnco.fcmessenger.R
+import com.funnco.fcmessenger.common.model.UserModel
+import com.funnco.fcmessenger.common.retrofit.RetrofitObject
+import com.funnco.fcmessenger.common.utils.CurrentUser
 import com.funnco.fcmessenger.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +36,27 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_chats, R.id.navigation_settings
             )
         )
+
+        getCurrentUser()
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    private fun getCurrentUser(){
+        val prefs = getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
+        val token = prefs.getString("token", null)
+
+        RetrofitObject.userAPI.getUserInfo(token!!, null).enqueue(object: Callback<UserModel>{
+            override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
+                if(response.isSuccessful && response.code() == 200){
+                    CurrentUser.model = response.body()!!
+                }
+            }
+
+            override fun onFailure(call: Call<UserModel>, t: Throwable) {
+            }
+
+        })
     }
 }
